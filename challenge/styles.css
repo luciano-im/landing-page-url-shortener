@@ -1,0 +1,117 @@
+:root {
+    --cyan: hsl(180, 66%, 49%);
+    --dark-violet: hsl(257, 27%, 26%);
+    --red: hsl(0, 87%, 67%);
+    --gray: hsl(0, 0%, 75%);
+    --grayish-violet: hsl(257, 7%, 63%);
+    --very-dark-blue: hsl(255, 11%, 22%);
+    --very-dark-violet: hsl(260, 8%, 14%);
+}
+
+body {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.layout {
+    padding: 0 24px;
+}
+
+.btn {
+    background-color: var(--cyan);
+    border-radius: 30px;
+    padding: 12px 0 !important;
+}
+
+header {
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    position: relative;
+}
+
+header .logo {
+    /* border: 1px solid blue; */
+    max-width: 120px;
+}
+
+header .logo img {
+    display: block;
+}
+
+/* header .menu {
+    border: 1px solid blue;
+} */
+
+header .menu .hamburguer {
+    width: 24px;
+    height: 21px;
+    position: relative;
+    display: block;
+}
+
+header .menu .hamburguer .line {
+    background: var(--gray);
+    width: 24px;
+    height: 3px;
+    position: relative;
+    display: block;
+    margin-top: 6px;
+}
+
+header .menu .hamburguer .line:nth-of-type(1) {
+    margin-top: 0;
+}
+
+header .menu label {
+    /* border: 1px solid orange; */
+    width: 24px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header .menu input[name=open-menu] {
+    display: none;
+}
+
+header .menu input:checked + nav {
+    display: block;
+}
+
+header .menu nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--dark-violet);
+    margin: 0 24px;
+    border-radius: 10px;
+    padding: 0 24px 20px 24px;
+}
+
+header .menu nav ul {
+    padding: 0;
+    text-align: center;
+}
+
+header .menu nav ul li {
+    list-style: none;
+}
+
+header .menu nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 20px 0;
+    display: block;
+}
+
+header .menu nav ul .login {
+    border-top: 1px solid #544a6d;
+}
