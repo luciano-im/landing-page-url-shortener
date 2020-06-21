@@ -480,24 +480,42 @@ footer .social ul li a {
 
     .hero {
         flex-direction: row;
+        margin: 2em 0;
     }
     
     .hero .hero-img {
+        flex: .46;
         background-position: left center;
-        background-size: 610px auto;
+        /* background-size: 610px auto; */
+        background-size: auto 440px;
         height: 490px;
     }
     
     .hero .hero-content {
+        flex: .54;
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: left;
         margin-top: 0;
+        margin-right: 0;
+        padding-right: 20px;
+    }
+
+    .hero .hero-content h1 {
+        font-size: 3.4em;
+        line-height: 1.2em;
+        margin: 0;
+    }
+
+    .hero .hero-content h1 + p {
+        margin-top: 0;
+        max-width: 550px;
     }
 
     .hero .hero-content .btn {
         align-self: flex-start;
+        margin-bottom: 0;
     }
 
     .shortener form {
