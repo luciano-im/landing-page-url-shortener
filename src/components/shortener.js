@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UrlList from './url-list';
 
 // {
@@ -11,6 +11,14 @@ function Shortener() {
   const [url, setUrl] = useState('');
   const [urlList, setUrlList] = useState([]);
   const [isError, setIsError] = useState(false);
+
+  // The empty array in the second parameter of useEffect will cause it will be called only once: afeter the first render
+  useEffect(() => {
+    let data = sessionStorage.getItem('urlList');
+    if (data) {
+      setUrlList(JSON.parse(data));
+    }
+  }, []);
 
   const handleShortenerClick = (e) => {
     e.preventDefault();
@@ -25,19 +33,25 @@ function Shortener() {
       })
         .then((res) => res.json())
         .then((res) => {
-          setUrlList([
+          const data = [
             ...urlList,
             { url: url, shortenedUrl: `https://rel.ink/${res.hashid}` },
-          ]);
+          ];
+          setUrlList(data);
           if (isError) {
             setIsError(false);
           }
           setUrl('');
+          updateSessionData(data);
         })
         .catch((error) => console.error('Error:', error));
     } else {
       setIsError(true);
     }
+  };
+
+  const updateSessionData = (data) => {
+    sessionStorage.setItem('urlList', JSON.stringify(data));
   };
 
   return (
