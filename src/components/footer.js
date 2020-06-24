@@ -1,7 +1,6 @@
 import React from 'react';
 import SocialIcons from './social-icons';
 import FooterNavigation from './footer-navigation';
-import FooterNavSection from './footer-nav-section';
 
 function Footer() {
   return (

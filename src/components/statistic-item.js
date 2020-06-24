@@ -1,16 +1,15 @@
 import React from 'react';
+import img from '../img/icon-brand-recognition.svg';
 
-function StatisticItem() {
+function StatisticItem(props) {
+  const { data } = props;
   return (
     <div className="item">
       <span className="icon">
-        <img src="./images/icon-brand-recognition.svg" alt="" />
+        <img src={data.img} alt="" />
       </span>
-      <h3>Brand Recognition</h3>
-      <p>
-        Boost your brand recognition with each click. Generic links don’t mean a
-        thing. Branded links help instil confidence in your content.
-      </p>
+      <h3>{data.title}</h3>
+      <p>{data.description}</p>
     </div>
   );
 }

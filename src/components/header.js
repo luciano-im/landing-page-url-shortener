@@ -9,11 +9,11 @@ function Header() {
     <header className="layout-m">
       <div className="logo">
         <img src={logo} alt="Shortly" />
-        <Menu>
-          <MenuButton />
-          <Navigation />
-        </Menu>
       </div>
+      <Menu>
+        <MenuButton />
+        <Navigation />
+      </Menu>
     </header>
   );
 }
