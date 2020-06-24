@@ -17,25 +17,20 @@ function Url(props) {
   return (
     <>
       <div className="link">
-        <a href="" className="original">
-          {url}
-        </a>
+        <span className="original">{url}</span>
         <div className="shortened-content">
-          <a href="" className="shortened">
-            {shortened}
-          </a>
+          <span className="shortened">{shortened}</span>
           {isCopied ? (
-            <a
-              href=""
+            <button
               className="btn-square link-copied"
               onClick={handleCopyClick}
             >
               Copied!
-            </a>
+            </button>
           ) : (
-            <a href="" className="btn-square" onClick={handleCopyClick}>
+            <button className="btn-square" onClick={handleCopyClick}>
               Copy
-            </a>
+            </button>
           )}
         </div>
       </div>

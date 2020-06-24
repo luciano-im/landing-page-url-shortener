@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import UrlList from './url-list';
 
-// {
-//   "hashid": "9yPAle",
-//   "url": "https://www.buratovich.com/",
-//   "created_at": "2020-06-23T03:39:28.525192Z"
-// }
-
 function Shortener() {
   const [url, setUrl] = useState('');
   const [urlList, setUrlList] = useState([]);
   const [isError, setIsError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('Please add a link');
 
   // The empty array in the second parameter of useEffect will cause it will be called only once: afeter the first render
   useEffect(() => {
@@ -31,22 +26,31 @@ function Shortener() {
           'Content-Type': 'application/json',
         },
       })
-        .then((res) => res.json())
         .then((res) => {
-          const data = [
+          if (res.status < 200 || res.status >= 300) {
+            throw new Error("URL couldn't be shortened");
+          }
+          return res.json();
+        })
+        .then((res) => {
+          let data = [
             ...urlList,
             { url: url, shortenedUrl: `https://rel.ink/${res.hashid}` },
           ];
           setUrlList(data);
+          setUrl('');
+          updateSessionData(data);
           if (isError) {
             setIsError(false);
           }
-          setUrl('');
-          updateSessionData(data);
         })
-        .catch((error) => console.error('Error:', error));
+        .catch((error) => {
+          setIsError(true);
+          setErrorMsg(error.message);
+        });
     } else {
       setIsError(true);
+      setErrorMsg('Please add a link');
     }
   };
 
@@ -65,7 +69,7 @@ function Shortener() {
             value={url || ''}
             placeholder="Shorten a link here..."
           />
-          <span className="error-msg">Please add a link</span>
+          <span className="error-msg">{errorMsg}</span>
         </div>
         <input
           type="submit"
